@@ -1,4 +1,6 @@
 // import React, { useState } from "react";
+import Footer from "../components/Footer";
+import Form from "../components/FormProduct";
 import Header from "../components/Header";
 
 const CreateProduct = () => {
@@ -48,6 +50,8 @@ const CreateProduct = () => {
   return (
     <div>
       <Header navTit={navTit}/>
+      <Form />
+      <Footer />
     </div>
   );
 };

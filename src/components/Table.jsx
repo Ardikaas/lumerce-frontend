@@ -8,7 +8,7 @@ const Tabel = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    const apiEndpoint = 'https://gjq3q54r-8080.asse.devtunnels.ms/api/products';
+    const apiEndpoint = 'https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products';
 
     fetch(apiEndpoint)
       .then(response => response.json())
@@ -26,7 +26,7 @@ const Tabel = () => {
     }
 
     try {
-      const response = await fetch(`https://gjq3q54r-8080.asse.devtunnels.ms/api/products/${productId}`, {
+      const response = await fetch(`https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products/${productId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

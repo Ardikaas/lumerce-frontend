@@ -1,3 +1,4 @@
+import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Tabel from "../components/Table"
 
@@ -8,6 +9,7 @@ const Dashboard = () => {
     <div>
       <Header navTit={navTit} showButton={button}/>
       <Tabel/>
+      <Footer/>
     </div>
   )
 }
