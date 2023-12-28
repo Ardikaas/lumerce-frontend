@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom';
 import React from "react"
 import del from "./assets/delete_forever.png"
 import edit from "./assets/edit.png"
@@ -6,6 +7,7 @@ import edit from "./assets/edit.png"
 const Tabel = () => {
 
   const [productList, setProductList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiEndpoint = 'https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products';
@@ -21,6 +23,7 @@ const Tabel = () => {
   const handleDelete = async (productId) => {
     const shouldDelete = window.confirm('Are you sure about that?');
 
+    
     if (!shouldDelete) {
       return;
     }
@@ -43,6 +46,11 @@ const Tabel = () => {
     } catch (error) {
       console.error('Terjadi kesalahan:', error);
     }
+  };
+
+  const handleEdit = (productId) => {
+    // Navigasi ke halaman formulir update dengan menyertakan ID produk
+    navigate(`/editproduct/${productId}`);
   };
 
   const formatCurrency = (value) => {
@@ -79,7 +87,7 @@ const Tabel = () => {
               <td>{product.quantity}</td>
               <td>{formatCurrency(product.price)}</td>
               <td className="brdt">
-                <button style={{ border: 'none', background: 'none' }}><img src={edit} alt="edit" style={{ width: '20px' }}/></button>
+                <button style={{ border: 'none', background: 'none' }} onClick={() => handleEdit(product._id)}><img src={edit} alt="edit" style={{ width: '20px' }}/></button>
                 <button style={{ border: 'none', background: 'none' }} onClick={() => handleDelete(product._id)}><img src={del} alt="delete" style={{ width: '20px' }}/></button>
               </td>
             </tr>

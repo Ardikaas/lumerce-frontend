@@ -295,16 +295,6 @@ body {
   object-fit: contain;
 }
 
-.brdl{
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.brdt{
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
 tbody tr td button{
   padding-right: 10px;
   padding-left: 10px;
@@ -385,4 +375,28 @@ tbody tr td button{
   font-weight: 900;
   font-size: 1rem;
   font-family: 'Montserrat', sans-serif;
+}
+
+.notfound{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notfound h1, 
+.notfound h3{
+  margin: 0;
+}
+
+.notfound h1{
+  font-weight: 900;
+  font-size: 4rem;
+}
+
+.notfound h3{
+  font-weight: 600;
+  font-size: 2rem;
 }

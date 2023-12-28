@@ -1,24 +1,24 @@
 // import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Form from "../components/FormProduct";
+import UpdateForm from "../components/FormUpdate";
 import Header from "../components/Header";
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
-const CreateProduct = () => {
+const UpdateProduct = () => {
   useEffect(() => {
-    document.title = 'Lu’mercé | Admin Add Product';
+    document.title = 'Lu’mercé | Admin Update Product';
     return () => {
     };
   }, []);
 
-  const navTit = "Add Product";
+  const navTit = "Edit Product";
   return (
     <div>
       <Header navTit={navTit}/>
-      <Form />
+      <UpdateForm />
       <Footer />
     </div>
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

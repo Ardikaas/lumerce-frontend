@@ -1,16 +1,38 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const Form = () => {
+const UpdateForm = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
     image: '',
     overview: '',
-    description: '',
     quantity: 0,
     price: 0,
+    description: '',
   });
+
+  useEffect(() => {
+    // Ambil data produk yang sudah ada berdasarkan ID
+    // console.log(formData.description)
+    const fetchProductData = async () => {
+      try {
+        const response = await fetch(`https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products/${id}`);
+        if (response.ok) {
+          const productData = await response.json();
+          // Isi nilai bidang formulir dengan data yang sudah ada
+          setFormData(productData.data);
+        } else {
+          console.error('Gagal mengambil data produk:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Terjadi kesalahan mengambil data produk:', error.message);
+      }
+    };
+
+    fetchProductData();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,8 +44,8 @@ const Form = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products', {
-        method: 'POST',
+      const response = await fetch(`https://ecommerce-api-ofvucrey6a-uc.a.run.app/api/products/${id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -31,10 +53,10 @@ const Form = () => {
       });
 
       if (response.ok) {
-        console.log('Product created successfully!');
+        console.log('Product updated successfully!');
         navigate('/dashboard');
       } else {
-        console.error('Failed to create product:', response.statusText);
+        console.error('Failed to update product:', response.statusText);
       }
     } catch (error) {
       console.error('Error submitting form:', error.message);
@@ -79,11 +101,11 @@ const Form = () => {
           </div>
         </div>
         <div className="form-button">
-          <button onClick={handleSubmit}>Create new Product</button>
+          <button onClick={handleSubmit}>Submit Change</button>
         </div>
       </div>
     </div>
   )
 }
 
-export default Form
+export default UpdateForm
